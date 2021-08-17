@@ -166,6 +166,7 @@ function keyboardInputHandler(e) {
     if (e.key === "Backspace" && btn.textContent === "Delete") btn.classList.add("active");
   });
 }
+
 function removeTransition(e) {
   let el = e.target;
   if (!el.classList.contains("active")) return;
