@@ -163,6 +163,7 @@ function keyboardInputHandler(e) {
     if (e.key === btn.textContent) btn.classList.add("active");
     if (e.key === "Enter" && btn.textContent === "=") btn.classList.add("active");
     if (e.key === "*" && btn.textContent === "x") btn.classList.add("active");
+    if (e.key === "Backspace" && btn.textContent === "Delete") btn.classList.add("active");
   });
 }
 function removeTransition(e) {
