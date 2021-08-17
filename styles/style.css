@@ -1,0 +1,281 @@
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.calculator-background {
+  position: relative;
+  height: 600px;
+  width: 400px;
+  background-color: #2099ba;
+  border-radius: 20px 10px 10px 10px;
+}
+
+.calculator {
+  position: absolute;
+  height: 98%;
+  width: 98%;
+  top: -1px;
+  right: 0;
+  background-color: #2bcefa;
+  border-radius: 10px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: ()[4], 1fr;
+      grid-template-columns: repeat(4), 1fr;
+  -ms-grid-rows: auto;
+      grid-template-rows: auto;
+      grid-template-areas: "display display display display" "clear clear delete delete" "factorial squareroot percentage divide" "seven eight nine multiply" "four five six subtract" "one two three add" "zero decimal equals add";
+}
+
+.display-background {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 4;
+  grid-area: display;
+  background-color: #2099ba;
+  position: relative;
+  width: 80%;
+  height: 70%;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  margin-top: 1em;
+}
+
+.display {
+  width: 98%;
+  height: 90%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: #bbbbbb;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 2em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.display p {
+  padding: 0 0.5em;
+}
+
+.btn-bg {
+  position: relative;
+  background-color: #ca3982;
+  width: 80%;
+  height: 75%;
+  border-radius: 15px 10px 10px 10px;
+  margin-left: 10px;
+}
+
+.btn {
+  background-color: hotpink;
+  position: absolute;
+  width: 95%;
+  height: 95%;
+  top: 0;
+  right: 0;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: 'Exo', sans-serif;
+  font-weight: 700;
+  font-size: 1.5em;
+  cursor: pointer;
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+}
+
+.btn:hover {
+  height: 98%;
+  width: 98%;
+}
+
+.btn:active {
+  height: 100%;
+  width: 100%;
+}
+
+.op-btn-bg {
+  background-color: #cfc424;
+}
+
+.op-btn {
+  background-color: yellow;
+}
+
+.clear-btn-bg {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: clear;
+  background-color: #02aa02;
+}
+
+.clear-btn-bg .clear-btn {
+  background-color: #00e400;
+}
+
+.clear-btn-bg, .delete-btn-bg {
+  width: 90%;
+}
+
+.delete-btn-bg {
+  -ms-grid-row: 2;
+  -ms-grid-column: 3;
+  -ms-grid-column-span: 2;
+  grid-area: delete;
+  background-color: #d10303;
+}
+
+.delete-btn-bg .delete-btn {
+  background-color: red;
+}
+
+.factorial-btn-bg {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  grid-area: factorial;
+}
+
+.square-root-btn-bg {
+  -ms-grid-row: 3;
+  -ms-grid-column: 2;
+  grid-area: squareroot;
+}
+
+.percentage-btn-bg {
+  -ms-grid-row: 3;
+  -ms-grid-column: 3;
+  grid-area: percentage;
+}
+
+.divide-btn-bg {
+  -ms-grid-row: 3;
+  -ms-grid-column: 4;
+  grid-area: divide;
+}
+
+.multiply-btn-bg {
+  -ms-grid-row: 4;
+  -ms-grid-column: 4;
+  grid-area: multiply;
+}
+
+.subtract-btn-bg {
+  -ms-grid-row: 5;
+  -ms-grid-column: 4;
+  grid-area: subtract;
+}
+
+.add-btn-bg {
+  -ms-grid-row: 6;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 4;
+  grid-area: add;
+  height: 90%;
+}
+
+.add-btn-bg .add-btn {
+  height: 98%;
+}
+
+.zero-btn-bg {
+  -ms-grid-row: 7;
+  -ms-grid-column: 1;
+  grid-area: zero;
+}
+
+.one-btn-bg {
+  -ms-grid-row: 6;
+  -ms-grid-column: 1;
+  grid-area: one;
+}
+
+.two-btn-bg {
+  -ms-grid-row: 6;
+  -ms-grid-column: 2;
+  grid-area: two;
+}
+
+.three-btn-bg {
+  -ms-grid-row: 6;
+  -ms-grid-column: 3;
+  grid-area: three;
+}
+
+.four-btn-bg {
+  -ms-grid-row: 5;
+  -ms-grid-column: 1;
+  grid-area: four;
+}
+
+.five-btn-bg {
+  -ms-grid-row: 5;
+  -ms-grid-column: 2;
+  grid-area: five;
+}
+
+.six-btn-bg {
+  -ms-grid-row: 5;
+  -ms-grid-column: 3;
+  grid-area: six;
+}
+
+.seven-btn-bg {
+  -ms-grid-row: 4;
+  -ms-grid-column: 1;
+  grid-area: seven;
+}
+
+.eight-btn-bg {
+  -ms-grid-row: 4;
+  -ms-grid-column: 2;
+  grid-area: eight;
+}
+
+.nine-btn-bg {
+  -ms-grid-row: 4;
+  -ms-grid-column: 3;
+  grid-area: nine;
+}
+
+.decimal-btn-bg {
+  -ms-grid-row: 7;
+  -ms-grid-column: 2;
+  grid-area: decimal;
+}
+
+.equals-btn-bg {
+  -ms-grid-row: 7;
+  -ms-grid-column: 3;
+  grid-area: equals;
+}
+
+.equals-btn-bg .equals-btn {
+  background-color: yellow;
+}
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,181 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.calculator-background {
+  position: relative;
+  height: 600px;
+  width: 400px;
+  background-color: #2099ba;
+  border-radius: 20px 10px 10px 10px;
+}
+.calculator {
+  position: absolute;
+  height: 98%;
+  width: 98%;
+  top: -1px;
+  right: 0;
+  background-color: #2bcefa;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: repeat(4), 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "display display display display"
+    "clear clear delete delete"
+    "factorial squareroot percentage divide"
+    "seven eight nine multiply"
+    "four five six subtract"
+    "one two three add"
+    "zero decimal equals add";
+}
+
+.display-background {
+  grid-area: display;
+  background-color: #2099ba;
+  position: relative;
+  width: 80%;
+  height: 70%;
+  justify-self: center;
+  margin-top: 1em;
+}
+.display {
+  width: 98%;
+  height: 90%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: rgb(187, 187, 187);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 2em;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  p {
+      padding: 0 0.5em;
+  }
+}
+.btn-bg {
+  position: relative;
+  background-color: rgb(202, 57, 130);
+  width: 80%;
+  height: 75%;
+  border-radius: 15px 10px 10px 10px;
+  margin-left: 10px;
+}
+.btn {
+    background-color: hotpink;
+    position: absolute;
+    width: 95%;
+    height: 95%;
+    top: 0;
+    right: 0;
+    border-radius: 10px;
+    display: flex;
+    justify-content:center ;
+    align-items: center;
+    font-family: 'Exo', sans-serif;
+    font-weight: 700;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: all 0.1s;
+    &:hover {
+      height: 98%;
+      width: 98%;
+    }
+    &:active {
+      height: 100%;
+      width: 100%;
+    }
+}
+.op-btn-bg {
+    background-color: rgb(207, 196, 36);
+}
+.op-btn {
+    background-color: yellow;
+}
+.clear-btn-bg {
+  grid-area: clear;
+  background-color: rgb(2, 170, 2);
+  .clear-btn {
+      background-color: rgb(0, 228, 0);
+  }
+}
+.clear-btn-bg, .delete-btn-bg{
+  width: 90%;
+}
+.delete-btn-bg{
+  grid-area: delete;
+  background-color: rgb(209, 3, 3);
+  .delete-btn {
+    background-color: red;
+  }
+}
+.factorial-btn-bg {
+  grid-area: factorial;
+}
+.square-root-btn-bg {
+  grid-area: squareroot;
+}
+.percentage-btn-bg {
+  grid-area: percentage;
+}
+.divide-btn-bg {
+  grid-area: divide;
+}
+.multiply-btn-bg {
+  grid-area: multiply;
+}
+.subtract-btn-bg {
+    grid-area: subtract;
+}
+.add-btn-bg {
+    grid-area: add;
+    height: 90%;
+    .add-btn {
+        height: 98%;
+    }
+}
+.zero-btn-bg {
+    grid-area: zero;
+}
+.one-btn-bg{
+    grid-area: one;
+}
+.two-btn-bg {
+    grid-area: two;
+}
+.three-btn-bg {
+    grid-area: three;
+}
+.four-btn-bg {
+    grid-area: four;
+}
+.five-btn-bg {
+    grid-area: five;
+}
+.six-btn-bg {
+    grid-area: six;
+}
+.seven-btn-bg {
+    grid-area: seven;
+}
+.eight-btn-bg {
+    grid-area:eight;
+}
+.nine-btn-bg {
+    grid-area: nine;
+}
+.decimal-btn-bg{
+    grid-area: decimal;
+}
+.equals-btn-bg {
+    grid-area:equals ;
+    .equals-btn {
+      background-color: yellow;
+    }
+}
