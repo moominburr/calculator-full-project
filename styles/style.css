@@ -137,11 +137,23 @@
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
   grid-area: clear;
-  background-color: #02aa02;
+  background-color: #3ea83e;
 }
 
 .clear-btn-bg .clear-btn {
-  background-color: #00e400;
+  background-color: #4ee74e;
+  width: 96%;
+  height: 96%;
+}
+
+.clear-btn-bg .clear-btn:hover {
+  width: 98%;
+  height: 97%;
+}
+
+.clear-btn-bg .clear-btn:active {
+  height: 100%;
+  width: 100%;
 }
 
 .clear-btn-bg, .delete-btn-bg {
@@ -153,11 +165,23 @@
   -ms-grid-column: 3;
   -ms-grid-column-span: 2;
   grid-area: delete;
-  background-color: #d10303;
+  background-color: #b34949;
 }
 
 .delete-btn-bg .delete-btn {
-  background-color: red;
+  background-color: #ff6c6c;
+  width: 96%;
+  height: 96%;
+}
+
+.delete-btn-bg .delete-btn:hover {
+  height: 97%;
+  width: 98%;
+}
+
+.delete-btn-bg .delete-btn:active {
+  height: 100%;
+  width: 100%;
 }
 
 .square-btn-bg {

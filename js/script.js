@@ -26,6 +26,7 @@ numberBtns.forEach((btn) => {
     addNumberToScreen(btn.textContent);
   });
 });
+btns.forEach((btn) => btn.addEventListener("transitionend", removeTransition));
 equalsBtn.addEventListener("click", () => {
   updateOperator(equalsBtn.textContent);
 });
@@ -33,16 +34,20 @@ clearBtn.addEventListener("click", clearAll);
 deleteBtn.addEventListener("click", deleteLast);
 decimalBtn.addEventListener("click", decimalPoint);
 window.addEventListener("keydown", keyboardInputHandler);
-btns.forEach(btn => btn.addEventListener('transitionend', removeTransition));
 
 //Functions
 function addNumberToScreen(number) {
   if (shouldResetDisplay) {
     resetDisplay();
   }
+  if (number === "0" && display.textContent === "0") return;
   let numDec = retr_dec(display.textContent);
   if (numDec === 0 || numDec === 1) {
-    display.textContent += number;
+    if (display.textContent !== "0") {
+      display.textContent += number;
+    } else {
+      display.textContent = number;
+    }
   } else if (numDec === 2) {
     alert("This calculator only works to 2 decimal place");
   }
@@ -55,7 +60,6 @@ function retr_dec(num) {
 function updateOperator(op) {
   if (op === "=") {
     nextOperand = display.textContent;
-
     evaluateSum();
   }
   if (display.textContent === "") return;
@@ -118,7 +122,6 @@ function clearAll() {
   currentOperator = null;
   decimal = false;
   answer = null;
-  console.log("Cleared");
 }
 
 function deleteLast() {
@@ -156,15 +159,17 @@ function keyboardInputHandler(e) {
   if (e.key === "Backspace") deleteLast();
   if (e.key === "Clear" || e.key === "Escape") clearAll();
   if (e.key === ".") decimalPoint();
-  btns.forEach(btn => {
-      if (e.key === btn.textContent) btn.classList.add('active');
-  })
+  btns.forEach((btn) => {
+    if (e.key === btn.textContent) btn.classList.add("active");
+    if (e.key === "Enter" && btn.textContent === "=") btn.classList.add("active");
+    if (e.key === "*" && btn.textContent === "x") btn.classList.add("active");
+  });
 }
 function removeTransition(e) {
-    let el = e.target;
-    if (!el.classList.contains('active')) return;
-    this.classList.remove("active");
-  }
+  let el = e.target;
+  if (!el.classList.contains("active")) return;
+  this.classList.remove("active");
+}
 
 //Mathmatical functions
 function add(a, b) {

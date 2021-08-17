@@ -104,9 +104,19 @@
 }
 .clear-btn-bg {
   grid-area: clear;
-  background-color: rgb(2, 170, 2);
+  background-color: rgb(62, 168, 62);
   .clear-btn {
-      background-color: rgb(0, 228, 0);
+      background-color: rgb(78, 231, 78);
+      width: 96%;
+      height: 96%;
+      &:hover{
+        width: 98%;
+        height: 97%;
+      }
+      &:active {
+        height: 100%;
+        width: 100%;
+      }
   }
 }
 .clear-btn-bg, .delete-btn-bg{
@@ -114,9 +124,19 @@
 }
 .delete-btn-bg{
   grid-area: delete;
-  background-color: rgb(209, 3, 3);
+  background-color: rgb(179, 73, 73);
   .delete-btn {
-    background-color: red;
+    background-color: rgb(255, 108, 108);
+    width: 96%;
+    height: 96%;
+    &:hover{
+      height: 97%;
+      width: 98%;
+    }
+    &:active {
+      height: 100%;
+      width: 100%;
+    }
   }
 }
 .square-btn-bg {
