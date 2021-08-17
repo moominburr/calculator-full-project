@@ -33,6 +33,7 @@ clearBtn.addEventListener("click", clearAll);
 deleteBtn.addEventListener("click", deleteLast);
 decimalBtn.addEventListener("click", decimalPoint);
 window.addEventListener("keydown", keyboardInputHandler);
+btns.forEach(btn => btn.addEventListener('transitionend', removeTransition));
 
 //Functions
 function addNumberToScreen(number) {
@@ -94,7 +95,6 @@ function evaluateSum() {
       return;
     }
     let answerCheck;
-    console.log(typeof answer);
     if (typeof answer !== "string") {
       answerCheck = answer.toString();
     }
@@ -156,7 +156,15 @@ function keyboardInputHandler(e) {
   if (e.key === "Backspace") deleteLast();
   if (e.key === "Clear" || e.key === "Escape") clearAll();
   if (e.key === ".") decimalPoint();
+  btns.forEach(btn => {
+      if (e.key === btn.textContent) btn.classList.add('active');
+  })
 }
+function removeTransition(e) {
+    let el = e.target;
+    if (!el.classList.contains('active')) return;
+    this.classList.remove("active");
+  }
 
 //Mathmatical functions
 function add(a, b) {
