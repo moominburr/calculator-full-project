@@ -17,23 +17,28 @@ const decimalBtn = document.querySelector("#decimal-btn");
 
 //Event listeners
 operatorBtns.forEach((btn) => {
-  btn.addEventListener("click", updateOperator);
+  btn.addEventListener("click", () => {
+    updateOperator(btn.textContent);
+  });
 });
 numberBtns.forEach((btn) => {
-  btn.addEventListener("click", addNumberToScreen);
+  btn.addEventListener("click", () => {
+    addNumberToScreen(btn.textContent);
+  });
 });
-equalsBtn.addEventListener("click", updateOperator);
+equalsBtn.addEventListener("click", () => {
+  updateOperator(equalsBtn.textContent);
+});
 clearBtn.addEventListener("click", clearAll);
 deleteBtn.addEventListener("click", deleteLast);
 decimalBtn.addEventListener("click", decimalPoint);
-window.addEventListener('keydown', keyboardInputHandler);
+window.addEventListener("keydown", keyboardInputHandler);
 
 //Functions
-function addNumberToScreen(e) {
+function addNumberToScreen(number) {
   if (shouldResetDisplay) {
     resetDisplay();
   }
-  let number = e.target.textContent;
   let numDec = retr_dec(display.textContent);
   if (numDec === 0 || numDec === 1) {
     display.textContent += number;
@@ -46,15 +51,16 @@ function retr_dec(num) {
   return (num.split(".")[1] || []).length;
 }
 
-function updateOperator(e) {
-  if (e.target.textContent === "=") {
+function updateOperator(op) {
+  if (op === "=") {
     nextOperand = display.textContent;
+
     evaluateSum();
   }
   if (display.textContent === "") return;
   if (currentOperator && nextOperand) {
     evaluateSum();
-    currentOperator = e.target.textContent;
+    currentOperator = op;
   }
   if (!currentOperand) {
     currentOperand = display.textContent;
@@ -66,7 +72,7 @@ function updateOperator(e) {
       nextOperand = null;
     }
   }
-  currentOperator = e.target.textContent;
+  currentOperator = op;
   shouldResetDisplay = true;
   decimal = false;
 }
@@ -134,7 +140,23 @@ function decimalPoint() {
   }
 }
 
-
+function keyboardInputHandler(e) {
+  if (e.key >= 0 || e.key <= 9) addNumberToScreen(e.key);
+  if (e.key === "=" || e.key === "Enter") updateOperator("=");
+  if (e.key === "§") updateOperator("+/-");
+  if (
+    e.key === "+" ||
+    e.key === "-" ||
+    e.key === "x" ||
+    e.key === "/" ||
+    e.key === "*" ||
+    e.key === "÷"
+  )
+    updateOperator(e.key);
+  if (e.key === "Backspace") deleteLast();
+  if (e.key === "Clear" || e.key === "Escape") clearAll();
+  if (e.key === ".") decimalPoint();
+}
 
 //Mathmatical functions
 function add(a, b) {
@@ -178,7 +200,13 @@ function operate(a, op, b) {
     case "÷":
       return divide(a, b);
 
+    case "/":
+      return divide(a, b);
+
     case "x":
+      return multiply(a, b);
+
+    case "*":
       return multiply(a, b);
 
     case "√":
