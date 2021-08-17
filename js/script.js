@@ -1,5 +1,5 @@
 const DEFAULT_DISPLAY = 0;
-let currentOperand = 0;
+let currentOperand = null;
 let nextOperand = null;
 let currentOperator = null;
 let shouldResetDisplay = false;
@@ -13,7 +13,7 @@ const operatorBtns = document.querySelectorAll(".op-btn");
 const equalsBtn = document.querySelector(".equals-btn");
 const clearBtn = document.querySelector("#clear-btn");
 const deleteBtn = document.querySelector("#delete-btn");
-const decimalBtn = document.querySelector('#decimal-btn');
+const decimalBtn = document.querySelector("#decimal-btn");
 
 //Event listeners
 operatorBtns.forEach((btn) => {
@@ -25,7 +25,8 @@ numberBtns.forEach((btn) => {
 equalsBtn.addEventListener("click", updateOperator);
 clearBtn.addEventListener("click", clearAll);
 deleteBtn.addEventListener("click", deleteLast);
-decimalBtn.addEventListener("click", decimalPoint)
+decimalBtn.addEventListener("click", decimalPoint);
+window.addEventListener('keydown', keyboardInputHandler);
 
 //Functions
 function addNumberToScreen(e) {
@@ -34,17 +35,16 @@ function addNumberToScreen(e) {
   }
   let number = e.target.textContent;
   let numDec = retr_dec(display.textContent);
-  if(numDec === 0){ 
+  if (numDec === 0 || numDec === 1) {
     display.textContent += number;
-  } else if (numDec === 1){
-    alert('This calculator only works to 1 decimal place');
+  } else if (numDec === 2) {
+    alert("This calculator only works to 2 decimal place");
   }
-
 }
 
 function retr_dec(num) {
-    return (num.split('.')[1] || []).length;
-  }
+  return (num.split(".")[1] || []).length;
+}
 
 function updateOperator(e) {
   if (e.target.textContent === "=") {
@@ -68,7 +68,9 @@ function updateOperator(e) {
   }
   currentOperator = e.target.textContent;
   shouldResetDisplay = true;
+  decimal = false;
 }
+
 function evaluateSum() {
   if (nextOperand === "0" && currentOperator === "÷") {
     alert("You cannot divide by 0.");
@@ -76,10 +78,23 @@ function evaluateSum() {
     return;
   } else {
     answer = operate(currentOperand, currentOperator, nextOperand);
-    let answerCheck = answer.toString();
-    if(retr_dec(answerCheck) > 1) {
-        answerCheck = Math.round(answerCheck * 10) / 10;
-        answer = answerCheck;
+    if (answer === undefined || answer === NaN) {
+      display.textContent = "ERROR";
+      currentOperand = null;
+      nextOperand = null;
+      currentOperator = null;
+      decimal = false;
+      answer = null;
+      return;
+    }
+    let answerCheck;
+    console.log(typeof answer);
+    if (typeof answer !== "string") {
+      answerCheck = answer.toString();
+    }
+    if (retr_dec(answerCheck) > 1) {
+      answerCheck = Math.round(answerCheck * 100) / 100;
+      answer = answerCheck;
     }
   }
   display.textContent = answer;
@@ -92,10 +107,12 @@ function resetDisplay() {
 
 function clearAll() {
   resetDisplay();
-  currentOperand = 0;
+  currentOperand = null;
   nextOperand = null;
   currentOperator = null;
+  decimal = false;
   answer = null;
+  console.log("Cleared");
 }
 
 function deleteLast() {
@@ -106,15 +123,20 @@ function deleteLast() {
   let newNum = Number(deletedString);
   display.textContent = newNum;
 }
-function decimalPoint(){
-    if(decimal){
-        return;
-    } else {
-        let decPoint = ".";
-        display.textContent += decPoint;
-        decimal = true;
-    }
+
+function decimalPoint() {
+  if (decimal) {
+    return;
+  } else {
+    let decPoint = ".";
+    display.textContent += decPoint;
+    decimal = true;
+  }
 }
+
+
+
+//Mathmatical functions
 function add(a, b) {
   return a + b;
 }
@@ -127,19 +149,31 @@ function divide(a, b) {
 function multiply(a, b) {
   return a * b;
 }
-function squareroot(a){
-    return Math.sqrt(a);
+function squareroot(a) {
+  return Math.sqrt(a);
+}
+function power(a, b) {
+  return a ** b;
+}
+function posNeg(a) {
+  return 0 - a;
 }
 
 function operate(a, op, b) {
   a = Number(a);
   b = Number(b);
   switch (op) {
+    case "+/-":
+      return posNeg(a);
+
     case "+":
       return add(a, b);
 
     case "-":
       return subtract(a, b);
+
+    case "x2":
+      return power(a, b);
 
     case "÷":
       return divide(a, b);
@@ -148,6 +182,6 @@ function operate(a, op, b) {
       return multiply(a, b);
 
     case "√":
-        return squareroot(a);
+      return squareroot(a);
   }
 }

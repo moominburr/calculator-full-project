@@ -27,7 +27,7 @@
   grid-template-areas:
     "display display display display"
     "clear clear delete delete"
-    "factorial squareroot percentage divide"
+    "square squareroot percentage divide"
     "seven eight nine multiply"
     "four five six subtract"
     "one two three add"
@@ -115,8 +115,8 @@
     background-color: red;
   }
 }
-.factorial-btn-bg {
-  grid-area: factorial;
+.square-btn-bg {
+  grid-area:square;
 }
 .square-root-btn-bg {
   grid-area: squareroot;

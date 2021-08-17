@@ -34,7 +34,7 @@
       grid-template-columns: repeat(4), 1fr;
   -ms-grid-rows: auto;
       grid-template-rows: auto;
-      grid-template-areas: "display display display display" "clear clear delete delete" "factorial squareroot percentage divide" "seven eight nine multiply" "four five six subtract" "one two three add" "zero decimal equals add";
+      grid-template-areas: "display display display display" "clear clear delete delete" "square squareroot percentage divide" "seven eight nine multiply" "four five six subtract" "one two three add" "zero decimal equals add";
 }
 
 .display-background {
@@ -155,10 +155,10 @@
   background-color: red;
 }
 
-.factorial-btn-bg {
+.square-btn-bg {
   -ms-grid-row: 3;
   -ms-grid-column: 1;
-  grid-area: factorial;
+  grid-area: square;
 }
 
 .square-root-btn-bg {
