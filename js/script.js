@@ -240,3 +240,7 @@ function operate(a, op, b) {
       return squareroot(a);
   }
 }
+
+window.onload = function () {
+  display.textContent = DEFAULT_DISPLAY;
+};
