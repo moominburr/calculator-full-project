@@ -83,9 +83,15 @@ function updateOperator(op) {
 }
 
 function evaluateSum() {
+  console.log(`a = ${currentOperand} op = ${currentOperator} b = ${nextOperand}`);
   if (nextOperand === "0" && currentOperator === "÷") {
     alert("You cannot divide by 0.");
     nextOperand = null;
+    return;
+  } else if (!currentOperand && !currentOperator) {
+    return;
+  } else if (currentOperator === "=") {
+    display.textContent = currentOperand;
     return;
   } else {
     answer = operate(currentOperand, currentOperator, nextOperand);
